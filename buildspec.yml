@@ -2,11 +2,11 @@ version: 0.2
 
 phases:
   install:
-  runtime-versions:
-    nodejs: 18
-  commands:
-    - npm install
-    - npm install jest-junit --save-dev
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - npm install
+      - npm install jest-junit --save-dev
   pre_build:
     commands:
       - echo 'prebuild'
