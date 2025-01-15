@@ -19,5 +19,8 @@
   ]
 },
   "author": "Your Name",
-  "license": "M"
+  "license": "M",
+  "devDependencies": {
+    "jest-junit": "^16.0.0"
+  }
 }
