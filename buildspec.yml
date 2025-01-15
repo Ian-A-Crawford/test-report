@@ -9,8 +9,10 @@ phases:
       - echo 'prebuild'
   build:
     commands:
-      - echo "Running codebuild-tests-run command without using CODEBUILD_CURRENT_SHARD_FILES"
-      - npx jest --runInBand --coverage
+      - echo "running tests"
+      - |
+        codebuild-tests-run \
+         --test-command 'npx jest' \
          
   post_build:
     commands:
