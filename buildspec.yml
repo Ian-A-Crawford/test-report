@@ -1,11 +1,5 @@
 version: 0.2
 
-batch:
-  fast-fail: false 
-  build-fanout:
-    parallelism: 2
-    ignore-failure: false
-    
 phases:
   install:
     commands:
@@ -19,14 +13,11 @@ phases:
       - |
         codebuild-tests-run \
          --test-command 'npx jest --runInBand --coverage' \
-         --files-search "codebuild-glob-search '**/_tests_/**/*.test.js'" \
-         --sharding-strategy 'equal-distribution'
       - echo "Running codebuild-tests-run command using CODEBUILD_CURRENT_SHARD_FILES"
       - codebuild-tests-run --test-command 'npx jest $(echo "$CODEBUILD_CURRENT_SHARD_FILES" | tr "\n" " ") --runInBand --coverage' --files-search "codebuild-glob-search '**/_tests_/**/*.test.js'" --sharding-strategy 'equal-distribution'
          
   post_build:
     commands:
-      - codebuild-glob-search '**/*.xml'  
       - echo "Running post-build steps..."
       - echo "Build completed on `date`"
 
